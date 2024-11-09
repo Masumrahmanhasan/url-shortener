@@ -18,7 +18,7 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->text('url');
-            $table->string('short_url');
+            $table->string('short_url')->unique()->index();
             $table->bigInteger('click')->default(0);
             $table->timestamps();
         });

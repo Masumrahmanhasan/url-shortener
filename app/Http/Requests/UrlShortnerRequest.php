@@ -27,29 +27,4 @@ class UrlShortnerRequest extends FormRequest
             'url' => ['required', 'url'],
         ];
     }
-
-    public function passedValidation(): void
-    {
-        $shortenedUrl = Str::random(8);
-
-        $fullShortenedUrl = config('app.url') . '/' . $shortenedUrl;
-
-        $this->merge([
-            'user_id' => auth()->id(),
-            'short_url' => $fullShortenedUrl,
-        ]);
-    }
-
-    /**
-     * Override validated method to include custom merged data.
-     * @param  null  $key
-     * @param  null  $default
-     */
-    public function validated($key = null, $default = null): array
-    {
-        return array_merge(parent::validated(), [
-            'user_id' => $this->user_id,
-            'short_url' => $this->short_url,
-        ]);
-    }
 }

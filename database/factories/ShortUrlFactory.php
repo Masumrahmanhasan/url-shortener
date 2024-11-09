@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use function fake;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ShortUrl>
@@ -17,7 +19,9 @@ class ShortUrlFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'url' => fake()->url(),
+            'short_url' => fake()->url(),
+            'user_id' => User::factory(),
         ];
     }
 }
